@@ -52,12 +52,14 @@ class App extends Component {
         <Person
           name={persons[0].name}
           age={persons[0].age}/>
+
         <Person
           name={persons[1].name}
           age={persons[1].age}
           click={this.switchNameHandler.bind(this, 'Max!')}
           changed={this.nameChangeHandler.bind(this)}
         >My Hobbies: Racing</Person>
+
         <Person
           name={persons[2].name}
           age={persons[2].age}/>
