@@ -35,16 +35,23 @@ class App extends Component {
 
   render() {
     const persons = this.state.persons;
+    const style = {
+      backgroundColor: 'white',
+      font: 'inherit',
+      border: '1px solid salmon',
+      borderRadius: '8px',
+    };
+
     console.log('persons', persons);
 
     return (
       <div className="App">
         <h1>Hi, I'm React App</h1>
         <p>This is really working</p>
-        <button onClick={() => this.switchNameHandler('Maxi!!!')}>Switch Name</button>
+        <button style={style} onClick={() => this.switchNameHandler('Maxi!!!')}>Switch Name</button>
         <Person
           name={persons[0].name}
-          age={persons[0].age} />
+          age={persons[0].age}/>
         <Person
           name={persons[1].name}
           age={persons[1].age}
@@ -53,7 +60,7 @@ class App extends Component {
         >My Hobbies: Racing</Person>
         <Person
           name={persons[2].name}
-          age={persons[2].age} />
+          age={persons[2].age}/>
       </div>
     );
   }
