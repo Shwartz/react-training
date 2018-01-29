@@ -52,31 +52,34 @@ class App extends Component {
       borderRadius: '8px',
     };
 
+    let personsBlock = null;
+    if (this.state.showPersons) {
+      personsBlock = (
+        <div>
+          <Person
+            name={persons[0].name}
+            age={persons[0].age}/>
+
+          <Person
+            name={persons[1].name}
+            age={persons[1].age}
+            click={this.switchNameHandler.bind(this, 'Max!')}
+            changed={this.nameChangeHandler.bind(this)}
+          >My Hobbies: Racing</Person>
+
+          <Person
+            name={persons[2].name}
+            age={persons[2].age}/>
+        </div>
+      )
+    }
+
     return (
       <div className="App">
         <h1>Hi, I'm React App</h1>
         <p>This is really working</p>
-
         <button style={style} onClick={this.togglePersonsHandler}>Toggle Persons</button>
-
-        { this.state.showPersons === true ?
-          <div>
-            <Person
-              name={persons[0].name}
-              age={persons[0].age}/>
-
-            <Person
-              name={persons[1].name}
-              age={persons[1].age}
-              click={this.switchNameHandler.bind(this, 'Max!')}
-              changed={this.nameChangeHandler.bind(this)}
-            >My Hobbies: Racing</Person>
-
-            <Person
-              name={persons[2].name}
-              age={persons[2].age}/>
-          </div> : null
-        }
+        {personsBlock}
       </div>
     );
   }
