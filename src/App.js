@@ -29,8 +29,14 @@ class App extends Component {
         {name: 'Max', age: '28'},
         {name: event.target.value, age: '29'},
         {name: 'Stephanie', age: '25'},
-      ]
+      ],
+      otherState: 'Some other values',
+      showPersons: false,
     })
+  };
+
+  togglePersonsHandler = () => {
+
   };
 
   render() {
@@ -48,21 +54,25 @@ class App extends Component {
       <div className="App">
         <h1>Hi, I'm React App</h1>
         <p>This is really working</p>
-        <button style={style} onClick={() => this.switchNameHandler('Maxi!!!')}>Switch Name</button>
-        <Person
-          name={persons[0].name}
-          age={persons[0].age}/>
+        <button style={style} onClick={() => this.togglePersonsHandler}>Switch Name</button>
+        { this.state.persons === true ?
+          <div>
+            <Person
+              name={persons[0].name}
+              age={persons[0].age}/>
 
-        <Person
-          name={persons[1].name}
-          age={persons[1].age}
-          click={this.switchNameHandler.bind(this, 'Max!')}
-          changed={this.nameChangeHandler.bind(this)}
-        >My Hobbies: Racing</Person>
+            <Person
+              name={persons[1].name}
+              age={persons[1].age}
+              click={this.switchNameHandler.bind(this, 'Max!')}
+              changed={this.nameChangeHandler.bind(this)}
+            >My Hobbies: Racing</Person>
 
-        <Person
-          name={persons[2].name}
-          age={persons[2].age}/>
+            <Person
+              name={persons[2].name}
+              age={persons[2].age}/>
+          </div> : null
+        }
       </div>
     );
   }
