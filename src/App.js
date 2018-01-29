@@ -8,7 +8,8 @@ class App extends Component {
       {name: 'Max', age: '28'},
       {name: 'Manu', age: '29'},
       {name: 'Stephanie', age: '26'},
-    ]
+    ],
+    showPersons: false,
   };
 
   switchNameHandler = (newName) => {
@@ -31,12 +32,15 @@ class App extends Component {
         {name: 'Stephanie', age: '25'},
       ],
       otherState: 'Some other values',
-      showPersons: false,
     })
   };
 
   togglePersonsHandler = () => {
-
+    console.log('show persons');
+    const toggle = !this.state.showPersons;
+    this.setState({
+      showPersons: toggle
+    })
   };
 
   render() {
@@ -48,14 +52,14 @@ class App extends Component {
       borderRadius: '8px',
     };
 
-    console.log('persons', persons);
-
     return (
       <div className="App">
         <h1>Hi, I'm React App</h1>
         <p>This is really working</p>
-        <button style={style} onClick={() => this.togglePersonsHandler}>Switch Name</button>
-        { this.state.persons === true ?
+
+        <button style={style} onClick={this.togglePersonsHandler}>Toggle Persons</button>
+
+        { this.state.showPersons === true ?
           <div>
             <Person
               name={persons[0].name}

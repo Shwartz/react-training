@@ -2,7 +2,6 @@ import React from 'react';
 import './Person.css';
 
 const person = (props) => {
-  console.log('props', props);
   const {name, age, changed} = props;
 
   return (
