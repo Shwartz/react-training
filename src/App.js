@@ -5,28 +5,29 @@ import './App.css';
 class App extends Component {
   state = {
     persons: [
-      {name: 'Max', age: '28'},
-      {name: 'Manu', age: '29'},
-      {name: 'Stephanie', age: '26'},
+      {id: 'kds03', name: 'Max', age: '28'},
+      {id: 'hdhd3', name: 'Manu', age: '29'},
+      {id: 'sdw3', name: 'Stephanie', age: '26'},
     ],
     showPersons: false,
   };
 
   deletePersonHandler = (personIndex) => {
-    const persons = this.state.persons;
+    //const persons = this.state.persons.slice();
+    const persons = [...this.state.persons];
     persons.splice(personIndex, 1);
     this.setState({persons: persons})
   };
 
-  nameChangeHandler = (event) => {
-    this.setState({
-      persons: [
-        {name: 'Max', age: '28'},
-        {name: event.target.value, age: '29'},
-        {name: 'Stephanie', age: '25'},
-      ],
-      otherState: 'Some other values',
-    })
+  nameChangeHandler = (event, id) => {
+    const persons = [...this.state.persons];
+    const personIndex = this.state.persons.findIndex(p => p.id === id);
+    const person = {...this.state.persons[personIndex]};
+
+    person.name = event.target.value;
+    persons[personIndex] = person;
+
+    this.setState({persons: persons})
   };
 
   togglePersonsHandler = () => {
@@ -38,7 +39,6 @@ class App extends Component {
   };
 
   render() {
-    const persons = this.state.persons;
     const style = {
       backgroundColor: 'white',
       font: 'inherit',
@@ -55,22 +55,9 @@ class App extends Component {
               click={() => this.deletePersonHandler(index)}
               name={person.name}
               age={person.age}
-              key={index}/>
+              changed={(event) => this.nameChangeHandler(event, person.id)}
+              key={person.id}/>
           })}
-          {/*<Person
-            name={persons[0].name}
-            age={persons[0].age}/>
-
-          <Person
-            name={persons[1].name}
-            age={persons[1].age}
-            click={this.switchNameHandler.bind(this, 'Max!')}
-            changed={this.nameChangeHandler.bind(this)}
-          >My Hobbies: Racing</Person>
-
-          <Person
-            name={persons[2].name}
-            age={persons[2].age}/>*/}
         </div>
       )
     }
