@@ -40,10 +40,13 @@ class App extends Component {
 
   render() {
     const style = {
-      backgroundColor: 'white',
+      backgroundColor: 'green',
+      color: 'white',
       font: 'inherit',
       border: '1px solid salmon',
+      padding: '4px 8px',
       borderRadius: '8px',
+      cursor: 'pointer',
     };
 
     let personsBlock = null;
@@ -59,14 +62,17 @@ class App extends Component {
               key={person.id}/>
           })}
         </div>
-      )
+      );
+      style.backgroundColor = 'red';
     }
 
     return (
       <div className="App">
         <h1>Hi, I'm React App</h1>
         <p>This is really working</p>
-        <button style={style} onClick={this.togglePersonsHandler}>Toggle Persons</button>
+        <button
+          style={style}
+          onClick={this.togglePersonsHandler}>Toggle Persons</button>
         {personsBlock}
       </div>
     );
