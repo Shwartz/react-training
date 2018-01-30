@@ -6,3 +6,10 @@
     padding: 16px;
     background-color: #cee1e6;
 }
+
+@media (min-width: 500px) {
+    .Person {
+        width: 450px;
+        border: 1px solid grey;
+    }
+}
