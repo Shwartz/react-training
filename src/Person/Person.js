@@ -3,6 +3,10 @@ import styles from  './Person.css';
 
 const person = (props) => {
   const {name, age, changed} = props;
+  const rnd = Math.random();
+  if (rnd > 0.7) {
+    throw new Error('Something went wrong');
+  }
 
   return (
     <div className={styles.Person}>

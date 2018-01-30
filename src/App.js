@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Person from './Person/Person';
 import styles from './App.css';
+import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
 
 class App extends Component {
   state = {
@@ -45,12 +46,14 @@ class App extends Component {
       personsBlock = (
         <div>
           {this.state.persons.map((person, index) => {
-            return <Person
-              click={() => this.deletePersonHandler(index)}
-              name={person.name}
-              age={person.age}
-              changed={(event) => this.nameChangeHandler(event, person.id)}
-              key={person.id}/>
+            return <ErrorBoundary key={person.id}>
+              <Person
+                click={() => this.deletePersonHandler(index)}
+                name={person.name}
+                age={person.age}
+                changed={(event) => this.nameChangeHandler(event, person.id)}
+                />
+            </ErrorBoundary>
           })}
         </div>
       );
@@ -58,19 +61,19 @@ class App extends Component {
     }
 
     const classes = [];
-    if (this.state.persons.length <= 2) classes.push( styles.red );
-    if (this.state.persons.length <= 1) classes.push( styles.bold );
+    if (this.state.persons.length <= 2) classes.push(styles.red);
+    if (this.state.persons.length <= 1) classes.push(styles.bold);
 
     return (
-        <div className={styles.App}>
-          <h1>Hi, I'm React App</h1>
-          <p className={classes.join(' ')}>This is really working</p>
-          <button
-            className={btnClass}
-            onClick={this.togglePersonsHandler}>Toggle Persons
-          </button>
-          {personsBlock}
-        </div>
+      <div className={styles.App}>
+        <h1>Hi, I'm React App</h1>
+        <p className={classes.join(' ')}>This is really working</p>
+        <button
+          className={btnClass}
+          onClick={this.togglePersonsHandler}>Toggle Persons
+        </button>
+        {personsBlock}
+      </div>
     );
   }
 }
