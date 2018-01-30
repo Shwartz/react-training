@@ -53,6 +53,7 @@ class App extends Component {
       <div className={styles.App}>
         <Cockpit
           persons={this.state.persons}
+          clicked={this.togglePersonsHandler}
           showPersons={this.state.showPersons}/>
         {personsBlock}
       </div>
