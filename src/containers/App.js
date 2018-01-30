@@ -1,9 +1,13 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
 import styles from './App.css';
 
-class App extends Component {
+class App extends PureComponent {
+  constructor(props) {
+    super(props);
+    console.log('props: ', props);
+  }
   state = {
     persons: [
       {id: 'kds03', name: 'Max', age: '28'},
@@ -12,6 +16,10 @@ class App extends Component {
     ],
     showPersons: false,
   };
+
+  /*shouldComponentUpdate (nextProps, nextState) {
+    return nextState.persons !== this.state.persons || nextState.showPersons !== this.state.showPersons;
+  }*/
 
   deletePersonHandler = (personIndex) => {
     //const persons = this.state.persons.slice();
@@ -51,6 +59,7 @@ class App extends Component {
 
     return (
       <div className={styles.App}>
+        <button onClick={()=>{this.setState({showPersons: true})}}>Show Persons</button>
         <Cockpit
           title={this.props.appTitle}
           persons={this.state.persons}

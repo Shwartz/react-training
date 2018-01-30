@@ -3,6 +3,9 @@ import styles from './Person.css';
 
 
 class Person extends React.Component {
+  componentWillUnmount() {
+    console.log('will unmount');
+  }
 
   render() {
     const {name, age, changed} = this.props;
