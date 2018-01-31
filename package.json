@@ -50,6 +50,7 @@
     "test": "node scripts/test.js --env=jsdom"
   },
   "devDependencies": {
+    "prop-types": "^15.6.0",
     "radium": "^0.21.2"
   },
   "jest": {
