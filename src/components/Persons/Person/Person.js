@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './Person.css';
-import WithClass from '../../../hoc/WithClass';
+import withClass from '../../../hoc/withClass';
+import Aux from '../../../hoc/Aux';
 
 
 class Person extends React.Component {
@@ -11,12 +12,12 @@ class Person extends React.Component {
   render() {
     const {name, age, changed} = this.props;
 
-    return <WithClass styles={styles.Person}>
+    return <Aux styles={styles.Person}>
       <p onClick={this.props.click}>I'm a {name} and I am {age} years old.</p>
       <p>{this.props.children}</p>
-      <input type="text" onChange={changed} value={name} />
-    </WithClass>
+      <input type="text" onChange={changed} value={name}/>
+    </Aux>
   }
 }
 
-export default Person;
+export default withClass(Person, styles.Person);
