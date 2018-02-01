@@ -5,10 +5,9 @@ import BurgerBuilder from './containers/BurgerBuilder/BurgerBuilder';
 import styles from './App.css';
 
 class App extends Component {
-  constructor(props) {
+  /*constructor(props) {
     super(props);
-    console.log('props: ', props);
-  }
+  }*/
 
   render() {
     return (
