@@ -14,7 +14,6 @@ const burger = (props) => {
     // at this point we have [Array(0), Array(n), N)
     // we need flatten array to get that info out from Array and bet to array
     .reduce((arr, el) => {
-      console.log('1. arr, el', arr, el);
       //-> [{key, props, f}, {n}]
       return arr.concat(el);
     }, []);
@@ -26,7 +25,7 @@ const burger = (props) => {
   return (
     <div className={styles.Burger}>
       <BurgerIngredient type="bread-top"/>
-      {transformedIngredients}
+        {transformedIngredients}
       <BurgerIngredient type="bread-bottom"/>
     </div>
   )
