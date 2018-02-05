@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import styles from './Modal.css';
-import Aux from '../../../hoc/Aux';
+import Aux from '../../../hoc/Aux/Aux';
 import Backdrop from '../Backdrop/Backdrop';
 
 class Modal extends Component {
@@ -9,7 +9,7 @@ class Modal extends Component {
   }
 
   componentWillUpdate() {
-    console.log('Modal will update');
+    //console.log('Modal will update');
   }
 
   render() {
