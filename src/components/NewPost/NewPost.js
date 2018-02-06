@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 
-import './NewPost.css';
+import styles from './NewPost.css';
 
 class NewPost extends Component {
     state = {
         title: '',
         content: '',
         author: 'Max'
-    }
+    };
 
     render () {
         return (
-            <div className="NewPost">
+            <div className={styles.NewPost}>
                 <h1>Add a Post</h1>
                 <label>Title</label>
                 <input type="text" value={this.state.title} onChange={(event) => this.setState({title: event.target.value})} />

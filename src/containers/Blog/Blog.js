@@ -3,13 +3,13 @@ import React, { Component } from 'react';
 import Post from '../../components/Post/Post';
 import FullPost from '../../components/FullPost/FullPost';
 import NewPost from '../../components/NewPost/NewPost';
-import './Blog.css';
+import styles from './Blog.css';
 
 class Blog extends Component {
     render () {
         return (
             <div>
-                <section className="Posts">
+                <section className={styles.Posts}>
                     <Post />
                     <Post />
                     <Post />

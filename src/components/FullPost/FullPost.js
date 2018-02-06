@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 
-import './FullPost.css';
+import styles from './FullPost.css';
 
 class FullPost extends Component {
     render () {
         let post = <p>Please select a Post!</p>;
         post = (
-            <div className="FullPost">
+            <div className={styles.FullPost}>
                 <h1>Title</h1>
                 <p>Content</p>
-                <div className="Edit">
-                    <button className="Delete">Delete</button>
+                <div className={styles.Edit}>
+                    <button className={styles.Delete}>Delete</button>
                 </div>
             </div>
 
