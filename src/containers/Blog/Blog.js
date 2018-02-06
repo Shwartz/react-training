@@ -7,30 +7,35 @@ import NewPost from '../../components/NewPost/NewPost';
 import styles from './Blog.css';
 
 class Blog extends Component {
-  componentDidMount() {
-    axios.get('http://jsonplaceholder.typicode.com/posts')
-      .then(response => {
-        console.log('response: ', response);
-      })
-  }
+    state = {
+        posts: []
+    };
 
-  render() {
-    return (
-      <div>
-        <section className={styles.Posts}>
-          <Post/>
-          <Post/>
-          <Post/>
-        </section>
-        <section>
-          <FullPost/>
-        </section>
-        <section>
-          <NewPost/>
-        </section>
-      </div>
-    );
-  }
+    componentDidMount() {
+        axios.get('http://jsonplaceholder.typicode.com/posts')
+            .then(response => {
+                this.setState({posts: response.data});
+            });
+    }
+
+    render() {
+        const posts = this.state.posts.map(post => {
+            return <Post key={post.id} title={post.title}/>
+        });
+        return (
+            <div>
+                <section className={styles.Posts}>
+                    {posts}
+                </section>
+                <section>
+                    <FullPost/>
+                </section>
+                <section>
+                    <NewPost/>
+                </section>
+            </div>
+        );
+    }
 }
 
 export default Blog;
