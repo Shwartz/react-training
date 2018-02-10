@@ -13,7 +13,7 @@ class App extends Component {
     return (
       <div className={styles.App}>
         <Layout>
-          <BurgerBuilder>Burger builder</BurgerBuilder>
+          <BurgerBuilder/>
         </Layout>
       </div>
     );
