@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 
-//import Post from '../../components/Post/Post';
+import Post from '../../components/Post/Post';
 import styles from './Blog.css';
 
 class Blog extends Component {
