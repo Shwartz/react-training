@@ -6,6 +6,7 @@ import BuildControls from '../../components/Burger/BuildControls/BuildControls';
 import Modal from '../../components/UI/Modal/Modal';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import axios from '../../axios-order';
+import {today, time} from '../../Lib/date';
 
 
 const INGREDIENT_PRICES = {
@@ -95,7 +96,9 @@ class BurgerBuilder extends Component {
         country: 'Latvia',
       },
       email: 't@t.com',
-      deliveryMethod: 'fastest'
+      deliveryMethod: 'fastest',
+      date: today(),
+      time: time(),
     };
     axios.post('/orders.json', order)
       .then(response => {
