@@ -24,14 +24,7 @@ class ContactData extends Component {
 
     const order = {
       ingredients: this.props.ingredients,
-      price: this.props.totalPrice,
-      customer: {
-        name: 'John Doe',
-        zipCode: '23234234',
-        country: 'Latvia',
-      },
-      email: 't@t.com',
-      deliveryMethod: 'fastest',
+      price: this.props.price,
       date: this.props.date,
       time: this.props.time,
     };
