@@ -86,6 +86,21 @@ class ContactData extends Component {
       });
   };
 
+  inputChangeHandler = (e, inputIdentifier) => {
+    // aim is to get immutable copy.
+    const updatedOrderForm = {
+      ...this.state.orderForm
+    };
+    // since updatedOrderForm is shallow copy we need to get next object to copy
+    const updatedFormElement = {
+      ...updatedOrderForm[inputIdentifier]
+    };
+    // since we updating only 'value' we are happy about cloning but if config needed we would copy that as well
+    updatedFormElement.value = e.target.value;
+    updatedOrderForm[inputIdentifier] = updatedFormElement;
+    this.setState({orderForm: updatedOrderForm});
+  };
+
   render() {
     const formElementsArray = [];
     for (let key in this.state.orderForm) {
@@ -104,6 +119,7 @@ class ContactData extends Component {
             key={formElement.id}
             elementType={formElement.config.elementType}
             elementConfig={formElement.config.elementConfig}
+            changed={(e) => {this.inputChangeHandler(e, formElement.id)}}
             value={formElement.config.value}/>
         ))}
         <Button btnType="Success" clicked={this.orderHandler}>Order</Button>

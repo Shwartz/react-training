@@ -27,7 +27,7 @@ const input = (props) => {
           onChange={props.changed}
           className={styles.InputElement}>
           {props.elementConfig.options.map((option, index) => (
-            <option value={option.value} key={index}>
+            <option value={option.value} key={option.value}>
               {option.displayValue}
             </option>
           ))}
