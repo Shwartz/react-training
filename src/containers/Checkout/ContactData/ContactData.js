@@ -15,7 +15,11 @@ class ContactData extends Component {
           type: 'text',
           placeholder: 'You name'
         },
-        value: ''
+        value: '',
+        validation: {
+          required: true
+        },
+        valid: false
       },
       zipCode: {
         elementType: 'input',
@@ -23,7 +27,13 @@ class ContactData extends Component {
           type: 'text',
           placeholder: 'ZIP Code'
         },
-        value: ''
+        value: '',
+        validation: {
+          required: true,
+          minLength: 5,
+          maxLength: 5
+        },
+        valid: false
       },
       street: {
         elementType: 'input',
@@ -31,7 +41,11 @@ class ContactData extends Component {
           type: 'text',
           placeholder: 'Street'
         },
-        value: ''
+        value: '',
+        validation: {
+          required: true
+        },
+        valid: false
       },
       country: {
         elementType: 'input',
@@ -39,7 +53,11 @@ class ContactData extends Component {
           type: 'text',
           placeholder: 'Country'
         },
-        value: ''
+        value: '',
+        validation: {
+          required: true
+        },
+        valid: false
       },
       email: {
         elementType: 'input',
@@ -47,7 +65,11 @@ class ContactData extends Component {
           type: 'text',
           placeholder: 'Email'
         },
-        value: ''
+        value: '',
+        validation: {
+          required: true
+        },
+        valid: false
       },
       deliveryMethod: {
         elementType: 'select',
@@ -92,6 +114,27 @@ class ContactData extends Component {
       });
   };
 
+  checkValidaty(value, rules) {
+    // The most awesome way to make true / false statement by adding && isValid!
+    let isValid = true;
+
+    if (!rules) return; // for select where we don't have rules
+
+    if (rules.required) {
+      isValid = value.trim() !== '' && isValid;
+    }
+
+    if (rules.minLength) {
+      isValid = value.length >= rules.minLength && isValid;
+    }
+
+    if (rules.maxLength) {
+      isValid = value.length <= rules.maxLength && isValid;
+    }
+
+    return isValid;
+  }
+
   inputChangeHandler = (e, inputIdentifier) => {
     // aim is to get immutable copy.
     const updatedOrderForm = {
@@ -103,6 +146,8 @@ class ContactData extends Component {
     };
     // since we updating only 'value' we are happy about cloning but if config needed we would copy that as well
     updatedFormElement.value = e.target.value;
+    updatedFormElement.valid = this.checkValidaty(updatedFormElement.value, updatedFormElement.validation);
+    console.log(updatedFormElement.value, updatedFormElement.valid);
     updatedOrderForm[inputIdentifier] = updatedFormElement;
     this.setState({orderForm: updatedOrderForm});
   };
