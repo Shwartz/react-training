@@ -28,11 +28,20 @@ const reducer = (state = initialState, action) => {
         counter: state.counter - action.val
       };
 
-      // don't use push as it would change original array
+    // don't use push as it would change original array
     case 'STORE_RESULT':
       return {
         ...state,
         results: state.results.concat({id: new Date(), value: state.counter})
+      };
+
+    case 'DELETE_RESULT':
+      const id = 2;
+      const newArray = state.results.filter((result)=> result.id !== action.resultElId); // filter returns new array
+
+      return {
+        ...state,
+        results: newArray
       };
 
     default:
