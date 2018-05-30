@@ -8,6 +8,8 @@ const initialState = {
     meat: 0
   },
   totalPrice: 4,
+  date: 0,
+  time: 0
 };
 
 const INGREDIENT_PRICES = {
@@ -26,7 +28,9 @@ const reducer = (state = initialState, action) => {
           ...state.ingredients,
           [action.ingredientName]: state.ingredients[action.ingredientName] + 1
         },
-        totalPrice: state.totalPrice + INGREDIENT_PRICES[action.ingredientName]
+        totalPrice: state.totalPrice + INGREDIENT_PRICES[action.ingredientName],
+        date: state.date,
+        time: state.time
       };
     case actionTypes.REMOVE_INGREDIENT:
       return {
@@ -35,7 +39,9 @@ const reducer = (state = initialState, action) => {
           ...state.ingredients,
           [action.ingredientName]: state.ingredients[action.ingredientName] - 1
         },
-        totalPrice: state.totalPrice - INGREDIENT_PRICES[action.ingredientName]
+        totalPrice: state.totalPrice - INGREDIENT_PRICES[action.ingredientName],
+        date: state.date,
+        time: state.time
       };
     default:
       return state

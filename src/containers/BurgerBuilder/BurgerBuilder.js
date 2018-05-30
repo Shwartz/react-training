@@ -10,6 +10,7 @@ import Spinner from '../../components/UI/Spinner/Spinner';
 import axios from '../../axios-order';
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 import * as actionTypes from '../../store/actions';
+import {today, time} from '../../Lib/date';
 
 class BurgerBuilder extends Component {
   state = {
@@ -20,14 +21,14 @@ class BurgerBuilder extends Component {
 
   // Good place for fetching data is in componentDidMount()
   componentDidMount() {
-    /*axios.get('https://react-udemy-shvarcs.firebaseio.com/ingredients.json')
+    axios.get('https://react-udemy-shvarcs.firebaseio.com/ingredients.json')
       .then(response => {
         this.setState({ingredients: response.data})
       })
       .catch(error => {
         console.log('error: ', error);
         this.setState({error: true})
-      })*/
+      })
   };
 
   updatePurchaseState(ingredients) {
@@ -51,19 +52,7 @@ class BurgerBuilder extends Component {
   };
 
   purchaseContinueHandler = () => {
-    //console.log('Continue with purchase!!!');
-
-    const queryParams = [];
-    for (let i in this.state.ingredients) {
-      queryParams.push(encodeURIComponent(i) + '=' + encodeURIComponent(this.state.ingredients[i]))
-    }
-    queryParams.push('price=' + this.state.totalPrice);
-    const queryString = queryParams.join('&');
-    console.log('queryString', queryString);
-    this.props.history.push({
-      pathname: '/checkout',
-      search: '?' + queryString
-    });
+    this.props.history.push('/checkout');
   };
 
   render() {
@@ -116,9 +105,10 @@ class BurgerBuilder extends Component {
 }
 
 const mapStateToProps = state => {
+  console.log('state', state)
   return {
     ings: state.ingredients,
-    price: state.totalPrice
+    price: state.totalPrice,
   }
 };
 const mapDispatchToProps = dispatch => {

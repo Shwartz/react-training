@@ -1,10 +1,12 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
 
 import Button from '../../../components/UI/Button/Button';
 import styles from './ContactDate.css';
 import axios from '../../../axios-order';
 import Spinner from '../../../components/UI/Spinner/Spinner';
 import Input from '../../../components/UI/Input/Input';
+import {today, time} from '../../../Lib/date';
 
 class ContactData extends Component {
   state = {
@@ -102,10 +104,8 @@ class ContactData extends Component {
       formData[formElementIdentifier] = this.state.orderForm[formElementIdentifier].value;
     }
 
-    console.log('formData', formData);
-
     const order = {
-      ingredients: this.props.ingredients,
+      ingredients: this.props.ings,
       price: this.props.price,
       date: this.props.date,
       time: this.props.time,
@@ -203,4 +203,13 @@ class ContactData extends Component {
   }
 }
 
-export default ContactData;
+const mapsStateToProps = state => {
+  return {
+    ings: state.ingredients,
+    price: state.totalPrice,
+    date: today(),
+    time: time(),
+  }
+};
+
+export default connect(mapsStateToProps)(ContactData);
